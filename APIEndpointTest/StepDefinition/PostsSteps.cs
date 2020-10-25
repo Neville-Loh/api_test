@@ -14,6 +14,11 @@ namespace APIEndpointTest.FeatureFile
         private static HttpResponseMessage response;
         private static Post post;
 
+
+        /* CREATE post test 
+         * test the basical functionality of GET operation within CRUD
+         * and the happy path
+         */
         [Given(@"I create a new post with \((.*),'(.*)','(.*)',(.*)\)")]
         public void GivenICreateANewPostWith(int id, string title, string body, int userId)
         {
@@ -35,13 +40,15 @@ namespace APIEndpointTest.FeatureFile
         }
 
 
-
+        /* GET post test 
+         * test the basical functionality of GET operation within CRUD
+         * and the happy path
+         */
 
         [When(@"I request to view post with id (.*)")]
         public async Task WhenIRequestToViewPostWithIdAsync(int id)
         {
             post = await ClientHandler.GetPostAsync(id);
-            ClientHandler.ShowProduct(post);
         }
 
         [Then(@"system should return (.*)")]
@@ -54,12 +61,13 @@ namespace APIEndpointTest.FeatureFile
         public void ThenSystemShouldReutrnPostHeader(int p0, string title, string body, int p3)
         {
             Assert.AreEqual(post.id, p0);
-            //Assert.AreEqual(post.title, title);
-            //Assert.AreEqual(post.body, body);
             Assert.AreEqual(post.id, p3);
         }
 
-
+        /* DELETE post test 
+        *  test the basical functionality of DELETE operation within CRUD
+        *  and the happy path
+        */
 
         [Given(@"There exists a post with id (.*)")]
         public async Task GivenThereExistsAPostWithIdAsync(int id)
@@ -82,6 +90,10 @@ namespace APIEndpointTest.FeatureFile
         }
 
 
+        /* UPDATE post test 
+        *  test the basical functionality of UPDATE operation within CRUD
+        *  and the happy path
+        */
 
         [Given(@"There exists a post with (.*)")]
         public async Task GivenThereExistsAPostWith(int id)
@@ -108,7 +120,10 @@ namespace APIEndpointTest.FeatureFile
             Assert.AreEqual(post.id, id);
         }
 
-
+        /* Negative Test
+         * test the senario where Quetry Does not Exist 
+         * 
+         */
 
         [When(@"I request a post that does not exists")]
         public async Task WhenIRequestAPostThatDoesNotExists()
@@ -119,6 +134,7 @@ namespace APIEndpointTest.FeatureFile
         [Then(@"the response should not be successful")]
         public void ThenTheResponseShouldHaevAErrorCode()
         {
+            Assert.NotNull(response);
             Assert.False(response.IsSuccessStatusCode);
         }
 

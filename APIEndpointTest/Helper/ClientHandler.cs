@@ -26,12 +26,11 @@ namespace APIEndpointTest.Helper
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public static void ShowProduct(Post post)
-        {
-            Console.WriteLine($"ID:{post.id} \nTitle: {post.title}\nBody: " +
-                $"{post.body}\nUserID: {post.userId}");
-        }
-
+        /// <summary>
+        /// Handle the CREATE request of the applciation 
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
         public static async Task<HttpResponseMessage> CreatePostAsync(Post post)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(
@@ -39,6 +38,11 @@ namespace APIEndpointTest.Helper
             return response;
         }
 
+        /// <summary>
+        /// Handle the GET request of the applcaiton 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static async Task<Post> GetPostAsync(int id)
         {
             Post post = null;
@@ -52,6 +56,12 @@ namespace APIEndpointTest.Helper
             }
             return post;
         }
+
+        /// <summary>
+        /// Handle the DELETE request of the applcaiton using async call
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static async Task<HttpResponseMessage> DeletePostAsync(int id)
         {
             HttpResponseMessage response = await client.DeleteAsync(
@@ -59,6 +69,11 @@ namespace APIEndpointTest.Helper
             return response;
         }
 
+        /// <summary>
+        /// Handle the PUT request of the application using asunc call
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public static async Task<HttpResponseMessage> UpdateProductAsync(Post product)
         {
             HttpResponseMessage response = await client.PutAsJsonAsync(
