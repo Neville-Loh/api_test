@@ -39,7 +39,7 @@ namespace APIEndpointTest.Helper
             return response;
         }
 
-        public static async Task<Post> GetProductAsync(int id)
+        public static async Task<Post> GetPostAsync(int id)
         {
             Post post = null;
             Assert.IsNotNull(client);
@@ -52,5 +52,20 @@ namespace APIEndpointTest.Helper
             }
             return post;
         }
+        public static async Task<HttpResponseMessage> DeletePostAsync(int id)
+        {
+            HttpResponseMessage response = await client.DeleteAsync(
+                $"posts/{id}");
+            return response;
+        }
+
+        public static async Task<HttpResponseMessage> UpdateProductAsync(Post product)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync(
+                $"posts/{product.id}", product);
+            response.EnsureSuccessStatusCode();
+            return response;
+        }
+
     }
 }

@@ -76,12 +76,14 @@ namespace APIEndpointTest.FeatureFile
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add Post")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        [NUnit.Framework.TestCaseAttribute("1", "ajksdajf", "asjdklfj", "2", "201", null)]
+        [NUnit.Framework.CategoryAttribute("HappyPath-CREATE")]
+        [NUnit.Framework.TestCaseAttribute("1", "A EyeCatching Title", "A powerful body", "2", "201", null)]
+        [NUnit.Framework.TestCaseAttribute("2", "A Fantastic Title", "A empowering message", "3", "201", null)]
+        [NUnit.Framework.TestCaseAttribute("3", "A Wonderful Title", "A wholesome paragraph", "4", "201", null)]
         public virtual void AddPost(string userId, string title, string body, string id, string statusCode, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "mytag"};
+                    "HappyPath-CREATE"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -126,13 +128,12 @@ namespace APIEndpointTest.FeatureFile
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Get Post")]
-        [NUnit.Framework.CategoryAttribute("mytag-2")]
-        [NUnit.Framework.TestCaseAttribute("1", "sunt aut facere repellat provident occaecati excepturi optio reprehenderit", "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit m" +
-            "olestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto", "200", "1", null)]
+        [NUnit.Framework.CategoryAttribute("HappyPath-GET")]
+        [NUnit.Framework.TestCaseAttribute("1", "Outstanding title", "This is a long discription of the body", "200", "1", null)]
         public virtual void GetPost(string userId, string title, string body, string statusCode, string id, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "mytag-2"};
+                    "HappyPath-GET"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -145,7 +146,7 @@ namespace APIEndpointTest.FeatureFile
             argumentsOfScenario.Add("StatusCode", statusCode);
             argumentsOfScenario.Add("id", id);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Post", null, tagsOfScenario, argumentsOfScenario);
-#line 17
+#line 19
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -165,14 +166,108 @@ namespace APIEndpointTest.FeatureFile
             else
             {
                 this.ScenarioStart();
-#line 18
+#line 20
  testRunner.When(string.Format("I request to view post with id {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 19
+#line 21
  testRunner.Then(string.Format("system should return {0}", statusCode), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 20
+#line 22
  testRunner.And(string.Format("system should reutrn post header ({0},\'{1}\',\'{2}\',{3})", userId, title, body, id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Delete Post")]
+        [NUnit.Framework.CategoryAttribute("HappyPath-DELETE")]
+        public virtual void DeletePost()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "HappyPath-DELETE"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete Post", null, tagsOfScenario, argumentsOfScenario);
+#line 29
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 30
+ testRunner.Given("There exists a post with id 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 31
+    testRunner.When("I delete a post", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 32
+ testRunner.Then("the system should return success code", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Update Post")]
+        [NUnit.Framework.CategoryAttribute("HappyPath-UPDATE")]
+        [NUnit.Framework.TestCaseAttribute("1", "A brand New title", "A brand New Body", "1", null)]
+        public virtual void UpdatePost(string userId, string newTitle, string newBody, string id, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "HappyPath-UPDATE"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("userId", userId);
+            argumentsOfScenario.Add("newTitle", newTitle);
+            argumentsOfScenario.Add("newBody", newBody);
+            argumentsOfScenario.Add("id", id);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update Post", null, tagsOfScenario, argumentsOfScenario);
+#line 35
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 36
+ testRunner.Given(string.Format("There exists a post with {0}", id), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 37
+ testRunner.When(string.Format("I update an existing property (\'{0}\',\'{1}\')", newTitle, newBody), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 38
+ testRunner.Then(string.Format("the response post should have value ({0},\'{1}\',\'{2}\',{3});", id, newTitle, newBody, userId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
