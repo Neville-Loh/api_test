@@ -78,7 +78,6 @@ namespace APIEndpointTest.FeatureFile
         [Then(@"the system should return success code")]
         public void ThenTheSystemShouldNotReturnAnyResults()
         {
-            Console.WriteLine("this your code :" + response.StatusCode);
             Assert.True(response.IsSuccessStatusCode);
         }
 
@@ -108,5 +107,20 @@ namespace APIEndpointTest.FeatureFile
             Assert.AreEqual(post.body, newbody);
             Assert.AreEqual(post.id, id);
         }
+
+
+
+        [When(@"I request a post that does not exists")]
+        public async Task WhenIRequestAPostThatDoesNotExists()
+        {
+            response = await ClientHandler.client.GetAsync($"posts/idontexist");
+        }
+
+        [Then(@"the response should not be successful")]
+        public void ThenTheResponseShouldHaevAErrorCode()
+        {
+            Assert.False(response.IsSuccessStatusCode);
+        }
+
     }
 }

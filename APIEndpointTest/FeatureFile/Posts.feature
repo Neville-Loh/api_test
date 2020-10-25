@@ -43,6 +43,6 @@ Examples:
 	| 1      | A brand New title    | A brand New Body    | 1  |
 
 
-Scenario Outline: Update Post
+Scenario Outline: Query Does Not Exists
 	When I request a post that does not exists
-	Then the response should haev a error code
+	Then the response should not be successful
